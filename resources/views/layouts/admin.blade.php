@@ -14,7 +14,7 @@
   <!-- Custom fonts for this template-->
   <link href="http://localhost/tcrc/laravel/laravelEMS/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
+  <link href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="http://localhost/tcrc/laravel/laravelEMS/resources/css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -58,13 +58,13 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Components</span>
+          <span>Office Categories</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="buttons.html">Buttons</a>
-            <a class="collapse-item" href="cards.html">Cards</a>
+            <a class="collapse-item" href="{{ url('/categories/')}}">List Categories</a>
+            <a class="collapse-item" href="{{ url('/categories/')}}/create">Add Category</a>
           </div>
         </div>
       </li>
@@ -376,9 +376,13 @@
       </div>
     </div>
   </div>
+  
+</body>
 
+<script src="http://localhost/tcrc/laravel/laravelEMS/resources/vendor/jquery/jquery.min.js"></script>
+  
   <!-- Bootstrap core JavaScript-->
-  <script src="http://localhost/tcrc/laravel/laravelEMS/resources/vendor/jquery/jquery.min.js"></script>
+  
   <script src="http://localhost/tcrc/laravel/laravelEMS/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
@@ -393,7 +397,8 @@
   <!-- Page level custom scripts -->
   <script src="http://localhost/tcrc/laravel/laravelEMS/resources/js/demo/chart-area-demo.js"></script>
   <script src="http://localhost/tcrc/laravel/laravelEMS/resources/js/demo/chart-pie-demo.js"></script>
+  <script src="http://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
-</body>
+  @yield('script')
 
 </html>

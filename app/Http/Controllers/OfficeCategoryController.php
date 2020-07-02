@@ -14,7 +14,8 @@ class OfficeCategoryController extends Controller
      */
     public function index()
     {
-        
+        $cats = OfficeCategory::all();
+        return view('categories.index',['cats' => $cats]);
     }
 
     /**
@@ -36,20 +37,26 @@ class OfficeCategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'first_name'=>'required',
-            'last_name'=>'required',
-            'email'=>'required'
+            'name'=>'required'
         ]);
-        $contact = new Contact([
-            'first_name' => $request->get('first_name'),
-            'last_name' => $request->get('last_name'),
-            'email' => $request->get('email'),
-            'job_title' => $request->get('job_title'),
-            'city' => $request->get('city'),
-            'country' => $request->get('country')
-        ]);
-        $contact->save();
-        return redirect('/contacts')->with('success', 'Contact saved!');
+
+
+        if(isset($request->id) && !empty($request->id)){
+            // Update case
+            $ofcCat = OfficeCategory::find($request->id);
+            $ofcCat->name = $request->name;
+            $ofcCat->namet = $request->namet;
+        } else { 
+            // Insert case
+            $ofcCat = new OfficeCategory([
+                'name' => $request->get('name'),
+                'namet' => $request->get('namet')
+            ]);
+        }
+        
+        
+        $ofcCat->save();
+        return redirect('/categories')->with('success', 'Contact saved!');
     }
 
     /**
@@ -69,9 +76,10 @@ class OfficeCategoryController extends Controller
      * @param  \App\OfficeCategory  $officeCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(OfficeCategory $officeCategory)
-    {
-        //
+    public function edit($id)
+    {   
+        $cat = OfficeCategory::find($id);
+        return view('categories.edit',['cat' => $cat]);
     }
 
     /**
@@ -83,7 +91,7 @@ class OfficeCategoryController extends Controller
      */
     public function update(Request $request, OfficeCategory $officeCategory)
     {
-        //
+
     }
 
     /**
@@ -92,8 +100,10 @@ class OfficeCategoryController extends Controller
      * @param  \App\OfficeCategory  $officeCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OfficeCategory $officeCategory)
+    public function destroy(OfficeCategory $officeCategory,$id)
     {
-        //
+        $cat = OfficeCategory::find($id);
+        $cat->delete();
+        return redirect('/categories')->with('success', 'Category Deleted!');
     }
 }

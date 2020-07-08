@@ -70,6 +70,10 @@ class SiteDataController extends Controller
         return redirect('/sitedata')->with('success', 'Contact saved!');
     }
 
+    public function test(){
+        // this is just to check a commit and git logic
+    }
+
     /**
      * Display the specified resource.
      *

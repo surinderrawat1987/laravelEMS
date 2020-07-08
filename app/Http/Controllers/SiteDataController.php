@@ -74,6 +74,10 @@ class SiteDataController extends Controller
         // this is just to check a commit and git logic
     }
 
+    public function testStaging(){
+        // this is just to check a commit and git logic for branches
+    }
+
     /**
      * Display the specified resource.
      *

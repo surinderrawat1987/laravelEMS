@@ -45,8 +45,8 @@ $(document).ready( function () {
                     <td>{{$cat->valuet}}</td>
                     <td>{{date('d-M-Y H:i:a',strtotime($cat->created_at))}}</td>
                     <td>
-                        <a href="{{url('/categories/')}}/{{$cat->id}}/edit">edit</a>/
-                        <form method="POST" action="{{ url('/categories/')}}/{{$cat->id}}">
+                        <a href="{{url('/sitedata/')}}/{{$cat->id}}/edit">edit</a>/
+                        <form method="POST" action="{{ url('/sitedata/')}}/{{$cat->id}}">
                             @csrf
                             <input  type="hidden" name="_method" value="DELETE">
                             <input class='delete' type="submit" value="delete">

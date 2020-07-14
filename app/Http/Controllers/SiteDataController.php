@@ -91,9 +91,14 @@ class SiteDataController extends Controller
      * @param  \App\SiteData  $siteData
      * @return \Illuminate\Http\Response
      */
-    public function edit(SiteData $siteData)
+    public function edit($id)
     {
-        //
+        //dd($id);
+        $attributes = DB::table('site_data')->select('attribute')->groupBy('attribute')->get();
+
+        $row = DB::table('site_data')->select('id','attribute','value','valueT')->where('id', '=', $id)->first();
+        //dd($row);
+        return view('sitedata.edit',['row' => $row,'attributes' => $attributes]);
     }
 
     /**

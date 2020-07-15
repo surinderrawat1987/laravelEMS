@@ -36,7 +36,7 @@
                     <select id="attributes" class="form-control" name="attribute" >
                         <option value="">Select Category</option>
                         @foreach ($attributes as $attribute)
-                            <option>{{$attribute->attribute}}</option>
+                            <option value="{{$attribute->attribute}}" selected>{{$attribute->attribute}}</option>
                         @endforeach
                     </select>
                 </div>

@@ -93,12 +93,15 @@ class SiteDataController extends Controller
      */
     public function edit($id)
     {
+
         //dd($id);
         $attributes = DB::table('site_data')->select('attribute')->groupBy('attribute')->get();
 
         $row = DB::table('site_data')->select('id','attribute','value','valueT')->where('id', '=', $id)->first();
         //dd($row);
+        // dd($attributes);
         return view('sitedata.edit',['row' => $row,'attributes' => $attributes]);
+
     }
 
     /**

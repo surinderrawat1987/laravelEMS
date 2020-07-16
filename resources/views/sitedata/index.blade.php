@@ -42,7 +42,7 @@ $(document).ready( function () {
                     <td>{{$i}}</td>
                     <td>{{$cat->attribute}}</td>
                     <td>{{$cat->value}}</td>
-                    <td>{{$cat->valuet}}</td>
+                    <td>{{$cat->valueT}}</td>
                     <td>{{date('d-M-Y H:i:a',strtotime($cat->created_at))}}</td>
                     <td>
                         <a href="{{url('/sitedata/')}}/{{$cat->id}}/edit">edit</a>/

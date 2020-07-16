@@ -122,8 +122,9 @@ class SiteDataController extends Controller
      * @param  \App\SiteData  $siteData
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SiteData $siteData)
+    public function destroy($id)
     {
-        //
+        DB::table('site_data')->delete();
+        return view('sitedata.edit')->with('delete','Record deleted successfully.');
     }
 }

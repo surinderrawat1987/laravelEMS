@@ -43,28 +43,20 @@ class SiteDataController extends Controller
             'attribute'=>'required'
         ]);
 
-
-        if(isset($request->id) && !empty($request->id)){
-            // Update case
-            $ofcCat = SiteData::find($request->id);
-            $ofcCat->name = $request->name;
-            $ofcCat->namet = $request->namet;
-        } else { 
-            if($request->get('attribute') == 'add'){
-                $attribute = $request->get('newattribute');
-            } else{
-                $attribute = $request->get('attribute');
-            }
-
-            // Insert case
-            $ofcCat = new SiteData([
-                'attribute' => $attribute,
-                'value' => $request->get('name'),
-                'valueT' => $request->get('namet'),
-                'entity' => $request->get('entity')
-            ]);
+        if($request->get('attribute') == 'add'){
+            $attribute = $request->get('newattribute');
+        } else{
+            $attribute = $request->get('attribute');
         }
-        
+
+        // Insert case
+        $ofcCat = new SiteData;
+            
+        $ofcCat->attribute = $attribute;
+        $ofcCat->value = $request->get('name');
+        $ofcCat->valueT = $request->namet;
+        $ofcCat->entity = $request->get('entity');
+       
         
         $ofcCat->save();
         return redirect('/sitedata')->with('success', 'Contact saved!');
@@ -111,9 +103,20 @@ class SiteDataController extends Controller
      * @param  \App\SiteData  $siteData
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SiteData $siteData)
+    public function update(Request $request, $id)
     {
-        //
+
+        $ofcCat = SiteData::find($id);
+
+        
+        $ofcCat->value = $request->name;
+        $ofcCat->valueT = $request->namet;
+        $ofcCat->save();
+        //dd($id);
+        $attributes = DB::table('site_data')->select('attribute')->groupBy('attribute')->get();
+
+        $row = DB::table('site_data')->select('id','attribute','value','valueT')->where('id', '=', $id)->first();
+        return view('sitedata.edit',['row' => $row,'attributes' => $attributes]);
     }
 
     /**

@@ -30,7 +30,7 @@
                     </ul>
                 </div>
             @endif
-            <form method="post" action="/laravelEMS/public/sitedata">
+            <form method="post" action="/laravelEMS/public/sitedata" accept-charset="UTF-8">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Site Category</label>
                     <select id="attributes" class="form-control" name="attribute" >

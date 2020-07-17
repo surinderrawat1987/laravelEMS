@@ -12,11 +12,11 @@
   <title>SB Admin 2 - Dashboard</title>
 
   <!-- Custom fonts for this template-->
-  <link href="http://localhost:8888/laravelEMS/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="http://localhost/tcrc/laravel/laravelEMS/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <link href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
   <!-- Custom styles for this template-->
-  <link href="http://localhost:8888/laravelEMS/resources/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="http://localhost/tcrc/laravel/laravelEMS/resources/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -69,6 +69,7 @@
         </div>
       </li>
 
+      @can('edit sitedata')
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
@@ -83,7 +84,7 @@
           </div>
         </div>
       </li>
-
+      @endcan
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -377,24 +378,24 @@
   
 </body>
 
-<script src="http://localhost:8888/laravelEMS/resources/vendor/jquery/jquery.min.js"></script>
+<script src="http://localhost/tcrc/laravel/laravelEMS/resources/vendor/jquery/jquery.min.js"></script>
   
   <!-- Bootstrap core JavaScript-->
   
-  <script src="http://localhost:8888/laravelEMS/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="http://localhost/tcrc/laravel/laravelEMS/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="http://localhost:8888/laravelEMS/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="http://localhost/tcrc/laravel/laravelEMS/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="http://localhost:8888/laravelEMS/resources/js/sb-admin-2.min.js"></script>
+  <script src="http://localhost/tcrc/laravel/laravelEMS/resources/js/sb-admin-2.min.js"></script>
 
   <!-- Page level plugins -->
-  <script src="http://localhost:8888/laravelEMS/resources/vendor/chart.js/Chart.min.js"></script>
+  <script src="http://localhost/tcrc/laravel/laravelEMS/resources/vendor/chart.js/Chart.min.js"></script>
 
   <!-- Page level custom scripts -->
-  <script src="http://localhost:8888/laravelEMS/resources/js/demo/chart-area-demo.js"></script>
-  <script src="http://localhost:8888/laravelEMS/resources/js/demo/chart-pie-demo.js"></script>
+  <script src="http://localhost/tcrc/laravel/laravelEMS/resources/js/demo/chart-area-demo.js"></script>
+  <script src="http://localhost/tcrc/laravel/laravelEMS/resources/js/demo/chart-pie-demo.js"></script>
   <script src="http://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
   @yield('script')

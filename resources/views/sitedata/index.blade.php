@@ -22,6 +22,9 @@ $(document).ready( function () {
         <h1>Office Category Listing</h1>
         <br \>
         <br \>
+        @if (session('success'))
+            <p>{{ session('success') }}</p>
+        @endif
         <table id="table" class="">
             <thead>
                 <tr>

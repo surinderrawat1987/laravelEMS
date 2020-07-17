@@ -27,7 +27,11 @@ class SiteDataController extends Controller
     public function create()
     {
         $attributes = DB::table('site_data')->select('attribute')->groupBy('attribute')->get();
-        return view('sitedata.create',['attributes' => $attributes]);
+        $offCats = DB::table('site_data')->select('id','value')->where('attribute', 'Office Category')
+        ->where('parent_id',0)
+        ->get();
+        return view('sitedata.create',['attributes' => $attributes, 'offCats' => $offCats]);
+
     }
 
     /**
@@ -56,7 +60,8 @@ class SiteDataController extends Controller
         $ofcCat->value = $request->get('name');
         $ofcCat->valueT = $request->namet;
         $ofcCat->entity = $request->get('entity');
-       
+
+        $ofcCat->parent_id = ($request->get('officecategory') != null)?$request->get('officecategory'):0;
         
         $ofcCat->save();
         return redirect('/sitedata')->with('success', 'Contact saved!');
@@ -88,11 +93,12 @@ class SiteDataController extends Controller
 
         //dd($id);
         $attributes = DB::table('site_data')->select('attribute')->groupBy('attribute')->get();
+        $offCats = DB::table('site_data')->select('id','value')->where('attribute', 'Office Category')->get();
 
-        $row = DB::table('site_data')->select('id','attribute','value','valueT')->where('id', '=', $id)->first();
+        $row = DB::table('site_data')->select('id','attribute','value','valueT', 'parent_id')->where('id', '=', $id)->first();
         //dd($row);
         // dd($attributes);
-        return view('sitedata.edit',['row' => $row,'attributes' => $attributes]);
+        return view('sitedata.edit',['row' => $row,'attributes' => $attributes, 'offCats' => $offCats]);
 
     }
 
@@ -111,12 +117,10 @@ class SiteDataController extends Controller
         
         $ofcCat->value = $request->name;
         $ofcCat->valueT = $request->namet;
+        $ofcCat->parent_id = $request->officecategory;
         $ofcCat->save();
         //dd($id);
-        $attributes = DB::table('site_data')->select('attribute')->groupBy('attribute')->get();
-
-        $row = DB::table('site_data')->select('id','attribute','value','valueT')->where('id', '=', $id)->first();
-        return view('sitedata.edit',['row' => $row,'attributes' => $attributes]);
+        return redirect('/sitedata')->with('success', 'Updated successfully');
     }
 
     /**
@@ -127,7 +131,7 @@ class SiteDataController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('site_data')->delete();
-        return view('sitedata.edit')->with('delete','Record deleted successfully.');
+        Sitedata::destroy($id);
+        return redirect('/sitedata')->with('success', 'Deleted successfully');
     }
 }

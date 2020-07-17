@@ -22,4 +22,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/categories', 'OfficeCategoryController');
-Route::resource('/sitedata', 'SiteDataController');
+Route::resource('/sitedata', 'SiteDataController')->middleware(['can:edit sitedata']);

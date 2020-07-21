@@ -25,6 +25,7 @@ $(document).ready( function () {
         @if (session('success'))
             <p>{{ session('success') }}</p>
         @endif
+        
         <table class="table table-bordered" id="table" width="100%" cellspacing="0">
             <thead>
                 <tr>

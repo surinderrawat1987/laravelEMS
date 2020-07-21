@@ -12,11 +12,11 @@
   <title>SB Admin 2 - Dashboard</title>
 
   <!-- Custom fonts for this template-->
-  <link href="http://localhost/tcrc/laravel/laravelEMS/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="http://localhost:8888/laravelEMS/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <link href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
   <!-- Custom styles for this template-->
-  <link href="http://localhost/tcrc/laravel/laravelEMS/resources/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="http://localhost:8888/laravelEMS/resources/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -55,7 +55,7 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Office Categories</span>
@@ -68,7 +68,7 @@
           </div>
         </div>
       </li>
-
+ -->
       @can('edit sitedata')
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
@@ -84,7 +84,24 @@
           </div>
         </div>
       </li>
+
+       <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>User Details</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Custom Utilities:</h6>
+            <a class="collapse-item" href="{{ url('/userdetails/')}}/create">Add</a>
+            <a class="collapse-item" href="{{ url('/sitedata/')}}">List</a>
+          </div>
+        </div>
+      </li>
+      
       @endcan
+
+
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -94,7 +111,7 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Pages</span>
@@ -111,21 +128,21 @@
             <a class="collapse-item" href="blank.html">Blank Page</a>
           </div>
         </div>
-      </li>
+      </li> -->
 
-      <!-- Nav Item - Charts -->
-      <li class="nav-item">
+    <!-- Nav Item - Charts -->
+      <!-- <li class="nav-item">
         <a class="nav-link" href="charts.html">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Charts</span></a>
-      </li>
+      </li> -->
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="tables.html">
           <i class="fas fa-fw fa-table"></i>
           <span>Tables</span></a>
-      </li>
+      </li> -->
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -378,24 +395,24 @@
   
 </body>
 
-<script src="http://localhost/tcrc/laravel/laravelEMS/resources/vendor/jquery/jquery.min.js"></script>
+<script src="http://localhost:8888/laravelEMS/resources/vendor/jquery/jquery.min.js"></script>
   
   <!-- Bootstrap core JavaScript-->
   
-  <script src="http://localhost/tcrc/laravel/laravelEMS/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="http://localhost:8888/laravelEMS/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="http://localhost/tcrc/laravel/laravelEMS/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="http://localhost:8888/laravelEMS/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="http://localhost/tcrc/laravel/laravelEMS/resources/js/sb-admin-2.min.js"></script>
+  <script src="http://localhost:8888/laravelEMS/resources/js/sb-admin-2.min.js"></script>
 
   <!-- Page level plugins -->
-  <script src="http://localhost/tcrc/laravel/laravelEMS/resources/vendor/chart.js/Chart.min.js"></script>
+  <script src="http://localhost:8888/laravelEMS/resources/vendor/chart.js/Chart.min.js"></script>
 
   <!-- Page level custom scripts -->
-  <script src="http://localhost/tcrc/laravel/laravelEMS/resources/js/demo/chart-area-demo.js"></script>
-  <script src="http://localhost/tcrc/laravel/laravelEMS/resources/js/demo/chart-pie-demo.js"></script>
+  <script src="http://localhost:8888/laravelEMS/resources/js/demo/chart-area-demo.js"></script>
+  <script src="http://localhost:8888/laravelEMS/resources/js/demo/chart-pie-demo.js"></script>
   <script src="http://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
   @yield('script')

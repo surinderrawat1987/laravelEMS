@@ -55,7 +55,6 @@ class SiteDataController extends Controller
 
         // Insert case
         $ofcCat = new SiteData;
-            
         $ofcCat->attribute = $attribute;
         $ofcCat->value = $request->get('name');
         $ofcCat->valueT = $request->namet;

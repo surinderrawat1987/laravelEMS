@@ -15,9 +15,10 @@ class UserDetailController extends Controller
      */
     public function index()
     {
-        $users = SiteData::get();;
+        $users = UserDetail::get();;
         return view('userdetails.index');
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -25,8 +26,12 @@ class UserDetailController extends Controller
      */
     public function create()
     {
-        $users = UserDetail::get();
-        return view('userdetails.create');
+        $department = DB::table('site_data')->select('id','value')->where('attribute', 'Department')->get();
+        $designation = DB::table('site_data')->select('id','value')->where('attribute', 'Designation')->get();
+        $appointmentcat = DB::table('site_data')->select('id','value')->where('attribute', 'Appointment Category')->get();
+        $honour = DB::table('site_data')->select('id','value')->where('attribute', 'Honour')->get();
+        // dd($honour);
+        return view('userdetails.create',['departments' => $department, 'designations' => $designation, 'appointmentcats' => $appointmentcat, 'honours' => $honour]);
 
     }
     /**
@@ -37,27 +42,58 @@ class UserDetailController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
-            'name'=>'required',
-            'staffid'=>'required'
+            // 'name'=>'required',
+            // 'staffid'=>'required',
+            // 'gender'=>'required',
+            // 'dob'=>'required',
+            // 'birthplace'=>'required',
+            // 'fathername'=>'required',
+            // 'mothername'=>'required',
+            // 'firstdepartment'=>'required',
+            // 'firstdesignation'=>'required',
+            // 'pfrom'=>'required',
+            // 'pto'=>'required',
+            // 'firstappointmentdate'=>'required',
+            // 'rc'=>'required',
+            // 'gb'=>'required',
+            // 'phone'=>'required',
+            // 'appointmentcategory'=>'required'
         ]);
-
-        if($request->get('attribute') == 'add'){
-            $attribute = $request->get('newattribute');
-        } else{
-            $attribute = $request->get('attribute');
-        }
-
+        dd($request);
         // Insert case
         $userDetail = new UserDetail;
-            
-        $userDetail->name = $name;
+        // $userDetail->name = $name;
         $userDetail->staffid = $request->get('staffid');
-        $userDetail->nameT = $request->namet;
+        $userDetail->namet = $request->get('namet');
         $userDetail->familynamet = $request->get('familynamet');
+        $userDetail->fathernamet = $request->get('fnamet');
+        $userDetail->mothernamet = $request->get('mnamet');
+        $userDetail->familyname = $request->get('familyname');
+        $userDetail->gender = $request->get('gender');
+        $userDetail->dob = $request->get('dob');
+        $userDetail->birthplace = $request->get('birthplace');
+        $userDetail->fathername = $request->get('fname');
+        $userDetail->mothername = $request->get('mname');
+        $userDetail->fathergb = $request->get('fgb');
+        $userDetail->mothergb = $request->get('mgb');
+        $userDetail->firstdepartment = $request->get('department');
+        $userDetail->firstdesignation = $request->get('designation');
+        $userDetail->pfrom = $request->get('probationstart');
+        $userDetail->pto = $request->get('probationend');
+        $userDetail->firstappointmentdate = $request->get('fad');
+        $userDetail->rc = $request->get('rcno');
+        $userDetail->gb = $request->get('gbno');
+        $userDetail->passport = $request->get('passno');
+        $userDetail->phone = $request->get('phoneno');
+        $userDetail->appointmentcategory = $request->get('appointmentcat');
+        $userDetail->leavingdate = $request->get('leavingdate');
+        $userDetail->dosvaliditydate = $request->get('dosdate');
+        $userDetail->remarks = $request->get('remarks');
+        $userDetail->honour_id = $request->get('honour');
+        $userDetail->honour_date = $request->get('honourdate');
 
-        $userDetail->parent_id = ($request->get('officecategory') != null)?$request->get('officecategory'):0;
-        
         $userDetail->save();
         return redirect('/userdetails')->with('success', 'Contact saved!');
     }

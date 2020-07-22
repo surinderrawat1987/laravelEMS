@@ -42,6 +42,12 @@ class UserDetailController extends Controller
      */
     public function store(Request $request)
     {
+        $user = new \App\User();
+        $user->password = \Hash::make('12345');
+        $user->email = $request->get('email');
+        $user->name = $request->get('name');
+        $user->active_for_login = $this->mainstsatus['INSERVICE'];
+        $user->save();
 
         $request->validate([
             // 'name'=>'required',
@@ -61,9 +67,10 @@ class UserDetailController extends Controller
             // 'phone'=>'required',
             // 'appointmentcategory'=>'required'
         ]);
-        dd($request);
+
         // Insert case
         $userDetail = new UserDetail;
+        $userDetail->user_id = $user->id;
         // $userDetail->name = $name;
         $userDetail->staffid = $request->get('staffid');
         $userDetail->namet = $request->get('namet');
@@ -93,8 +100,9 @@ class UserDetailController extends Controller
         $userDetail->remarks = $request->get('remarks');
         $userDetail->honour_id = $request->get('honour');
         $userDetail->honour_date = $request->get('honourdate');
-
+        
         $userDetail->save();
+        // dd(DB::getQueryLog());
         return redirect('/userdetails')->with('success', 'Contact saved!');
     }
 

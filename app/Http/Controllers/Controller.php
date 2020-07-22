@@ -10,4 +10,9 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    
+    public $mainstsatus  = [
+        'INSERVICE' => 1,
+        'DISENGAGE' => 0
+    ];
 }

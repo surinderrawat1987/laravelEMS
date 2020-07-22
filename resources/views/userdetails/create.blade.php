@@ -40,10 +40,10 @@
             <form method="post" action="/laravelEMS/public/userdetails" accept-charset="UTF-8">
                 <div class="row">
                     <div class="col-md-6">
-                        <!-- <div class="form-group">
+                        <div class="form-group">
                             <label for="exampleInputEmail1">Name</label>
                             <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter the Name">
-                        </div> -->
+                        </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Staff ID</label>
                             <input type="text" name="staffid" class="form-control" id="staffid" aria-describedby="emailHelp" placeholder="Enter the staff ID">
@@ -155,7 +155,7 @@
                                 <select id="department" class="form-control" name="department" >
                                     <option value="">Select Department</option>
                                     @foreach ($departments as $department)
-                                        <option "{{$department->id}}">{{$department->value}}</option>
+                                        <option value="{{$department->id}}">{{$department->value}}</option>
                                     @endforeach
                                 </select>
                         </div>
@@ -173,7 +173,7 @@
                                 <select id="appointmentcat" class="form-control" name="appointmentcat" >
                                     <option value="">Select Appointment Categoery</option>
                                     @foreach ($appointmentcats as $appointmentcat)
-                                        <option value="{{$appointmentcat-->id}}">{{$appointmentcat->value}}</option>
+                                        <option value="{{$appointmentcat->id}}">{{$appointmentcat->value}}</option>
                                     @endforeach
                                 </select>
 

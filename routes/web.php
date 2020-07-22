@@ -21,5 +21,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/categories', 'OfficeCategoryController');
 Route::resource('/sitedata', 'SiteDataController')->middleware(['can:edit sitedata']);
+
+Route::resource('/userdetails', 'UserDetailController')->middleware(['can:edit sitedata']);

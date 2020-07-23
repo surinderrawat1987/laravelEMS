@@ -23,9 +23,9 @@ class UserDetail extends Model
     *
     *@var string
     */
-    public function username()
+    public function user()
     {
-        return $this->hasone('App\User','id','user_id');
+        return $this->belongsTo('App\User');
     }
     public function department()
     {

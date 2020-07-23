@@ -5,6 +5,12 @@
 $(document).ready( function () {
     $('#table').DataTable();
 });
+
+// $(document).ready(function() {
+//     $('#table').DataTable( {
+//         "ajax": '../ajax/data/arrays.txt'
+//     });
+// });
 </script>
 @endsection
 
@@ -44,22 +50,22 @@ $(document).ready( function () {
             @php
             $i = 1;
             @endphp
-            @foreach($users as $user)
+            @foreach($userDetails as $userDetail)
                 
                 <tr>
                     <td>{{$i}}</td>
-                    <td>{{$user->username->name}}</td>
-                    <td>{{$user->staffid}}</td>
-                    <td>{{$user->gender}}</td>
-                    <td>{{$user->dob}}</td>
-                    <td>{{$user->department->value}}</td>
-                    <td>{{$user->designation->value}}</td>
-                    <td>{{$user->appointment->value}}</td>
+                    <td>{{$userDetail->user->name}}</td>
+                    <td>{{$userDetail->staffid}}</td>
+                    <td>{{$userDetail->gender}}</td>
+                    <td>{{$userDetail->dob}}</td>
+                    <td>{{$userDetail->department->value}}</td>
+                    <td>{{$userDetail->designation->value}}</td>
+                    <td>{{$userDetail->appointment->value}}</td>
 
-                    <td>{{date('d-M-Y H:i:a',strtotime($user->created_at))}}</td>
+                    <td>{{date('d-M-Y H:i:a',strtotime($userDetail->created_at))}}</td>
                     <td>
-                        <a href="{{url('/userdetails/')}}/{{$user->id}}/edit">edit</a>/
-                        <form method="POST" action="{{ url('/userdetails/')}}/{{$user->id}}">
+                        <a href="{{url('/userdetails/')}}/{$userDetail->id}}/edit">edit</a>/
+                        <form method="POST" action="{{ url('/userdetails/')}}/{$userDetail->id}}">
                             @csrf
                             <input  type="hidden" name="_method" value="DELETE">
                             <input class='delete' type="submit" value="delete">

@@ -23,4 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/sitedata', 'SiteDataController')->middleware(['can:edit sitedata']);
 
-Route::resource('/userdetails', 'UserDetailController')->middleware(['can:edit sitedata']);
+Route::resource('/userdetails', 'UserDetailController');
+Route::get('/userlist', 'UserDetailController@getUserList');
+
+

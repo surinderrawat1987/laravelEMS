@@ -223,9 +223,9 @@
                         <div class="form-group">
                             <label for="exampleInputNamet">Honour Name</label>
                             <select id="honour" class="form-control" name="honour" >
-                                    <option value="">Select Designation</option>
+                                    <option >Select Designation</option>
                                     @foreach ($honours as $honour)
-                                        <option>{{$honour->value}}</option>
+                                        <option value="{{$honour->id}}">{{$honour->value}}</option>
                                     @endforeach
                                 </select>
                             
@@ -254,6 +254,11 @@
                             @csrf
 
                         </div>
+                        <div class="form-group">
+                            <label for="exampleInputNamet">Email</label>
+                            <input type="text" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter the email">
+                            
+                        </div>
                         
                     </div>
                     <div class="col-md-6">
@@ -263,6 +268,7 @@
                             <input type="text" name="remarks" class="form-control" id="remarks" aria-describedby="emailHelp" placeholder="Enter the Remarks">
                             
                         </div>
+                        
                     </div>
                 </div>
                 <input type="hidden" name="entity" value="sitedata" />

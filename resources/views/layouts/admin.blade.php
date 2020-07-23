@@ -94,7 +94,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Utilities:</h6>
             <a class="collapse-item" href="{{ url('/userdetails/')}}/create">Add</a>
-            <a class="collapse-item" href="{{ url('/sitedata/')}}">List</a>
+            <a class="collapse-item" href="{{ url('/userdetails/')}}">List</a>
           </div>
         </div>
       </li>

@@ -15,8 +15,11 @@ class UserDetailController extends Controller
      */
     public function index()
     {
-        $users = UserDetail::get();;
-        return view('userdetails.index');
+        $users = UserDetail::with('username','department','designation','appointment')->get();
+        
+        //dd($users[0]->appointmentcategory->value);
+
+        return view('userdetails.index',['users' => $users]);
     }
 
     /**
@@ -46,7 +49,8 @@ class UserDetailController extends Controller
         $user->password = \Hash::make('12345');
         $user->email = $request->get('email');
         $user->name = $request->get('name');
-        $user->active_for_login = $this->mainstsatus['INSERVICE'];
+        $user->active_for_login = 0;
+        $user->mainstatus_id = $this->mainstsatus['INSERVICE'];
         $user->save();
 
         $request->validate([
@@ -71,7 +75,7 @@ class UserDetailController extends Controller
         // Insert case
         $userDetail = new UserDetail;
         $userDetail->user_id = $user->id;
-        // $userDetail->name = $name;
+        //$userDetail->name = $name;
         $userDetail->staffid = $request->get('staffid');
         $userDetail->namet = $request->get('namet');
         $userDetail->familynamet = $request->get('familynamet');
@@ -104,6 +108,12 @@ class UserDetailController extends Controller
         $userDetail->save();
         // dd(DB::getQueryLog());
         return redirect('/userdetails')->with('success', 'Contact saved!');
+    }
+
+    public function destroy($id)
+    {
+        UserDetail::destroy($id);
+        return redirect('/userDetails')->with('success', 'Deleted successfully');
     }
 
 }

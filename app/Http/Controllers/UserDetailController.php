@@ -113,7 +113,7 @@ class UserDetailController extends Controller
     public function destroy($id)
     {
         UserDetail::destroy($id);
-        return redirect('/userDetails')->with('success', 'Deleted successfully');
+        return redirect('/userdetails')->with('success', 'Deleted successfully');
     }
 
 }

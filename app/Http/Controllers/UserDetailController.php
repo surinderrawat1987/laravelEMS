@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\UserDetail;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Resources\UserCollection;
+use App\Http\Resources\UserDetails;
+
 
 class UserDetailController extends Controller
 {
@@ -15,11 +19,19 @@ class UserDetailController extends Controller
      */
     public function index()
     {
-        $users = UserDetail::with('username','department','designation','appointment')->get();
+        $userDetails = UserDetail::with('user','department','designation','appointment')->get();
         
         //dd($users[0]->appointmentcategory->value);
 
-        return view('userdetails.index',['users' => $users]);
+        return view('userdetails.index',['userDetails' => $userDetails]);
+    }
+
+    public function getUserList(){
+        
+        $users = new UserCollection(User::with('userDetails')->paginate(4));
+        // $users = new UserCollection(User::paginate());
+        dd($users->toArray(''));
+        // $users = UserDetail::with('username','department','designation','appointment')->get();
     }
 
     /**

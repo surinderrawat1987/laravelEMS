@@ -55,12 +55,12 @@ $(document).ready( function () {
                 <tr>
                     <td>{{$i}}</td>
                     <td>{{$user['name']}}</td>
-                    <td>{{$user['user_detail']['staffid']}}</td>
-                    <td>{{$user['user_detail']['gender']}}</td>
-                    <td>{{$user['user_detail']['dob']}}</td>
-                    <td>{{$user['user_detail']['department']['value']}}</td>
-                    <td>{{$user['user_detail']['designation']['value']}}</td>
-                    <td>{{$user['user_detail']['appointment']['value']}}</td>
+                    <td>{{$user['user_details']['staffid']}}</td>
+                    <td>{{$user['user_details']['gender']}}</td>
+                    <td>{{$user['user_details']['dob']}}</td>
+                    <td>{{$user['user_details']['department']['value']}}</td>
+                    <td>{{$user['user_details']['designation']['value']}}</td>
+                    <td>{{$user['user_details']['appointment']['value']}}</td>
 
                     <td>{{date('d-M-Y H:i:a',strtotime($user['created_at']))}}</td>
                     <td>

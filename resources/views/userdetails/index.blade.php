@@ -50,22 +50,22 @@ $(document).ready( function () {
             @php
             $i = 1;
             @endphp
-            @foreach($userDetails as $userDetail)
+            @foreach($users as $user)
                 
                 <tr>
                     <td>{{$i}}</td>
-                    <td>{{$userDetail->user->name}}</td>
-                    <td>{{$userDetail->staffid}}</td>
-                    <td>{{$userDetail->gender}}</td>
-                    <td>{{$userDetail->dob}}</td>
-                    <td>{{$userDetail->department->value}}</td>
-                    <td>{{$userDetail->designation->value}}</td>
-                    <td>{{$userDetail->appointment->value}}</td>
+                    <td>{{$user['name']}}</td>
+                    <td>{{$user['user_detail']['staffid']}}</td>
+                    <td>{{$user['user_detail']['gender']}}</td>
+                    <td>{{$user['user_detail']['dob']}}</td>
+                    <td>{{$user['user_detail']['department']['value']}}</td>
+                    <td>{{$user['user_detail']['designation']['value']}}</td>
+                    <td>{{$user['user_detail']['appointment']['value']}}</td>
 
-                    <td>{{date('d-M-Y H:i:a',strtotime($userDetail->created_at))}}</td>
+                    <td>{{date('d-M-Y H:i:a',strtotime($user['created_at']))}}</td>
                     <td>
-                        <a href="{{url('/userdetails/')}}/{$userDetail->id}}/edit">edit</a>/
-                        <form method="POST" action="{{ url('/userdetails/')}}/{$userDetail->id}}">
+                        <a href="{{url('/userdetails/')}}/{$userDetail['id']}}/edit">edit</a>/
+                        <form method="POST" action="{{ url('/userdetails/')}}/{$userDetail['id']}}">
                             @csrf
                             <input  type="hidden" name="_method" value="DELETE">
                             <input class='delete' type="submit" value="delete">

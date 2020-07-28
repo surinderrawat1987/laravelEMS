@@ -19,11 +19,11 @@ class UserDetailController extends Controller
      */
     public function index()
     {
-        $userDetails = UserDetail::with('user','department','designation','appointment')->get();
+        // $userDetails = UserDetail::with('user','department','designation','appointment')->get();
         
         //dd($users[0]->appointmentcategory->value);
-
-        return view('userdetails.index',['userDetails' => $userDetails]);
+        $users = new UserCollection(User::with('userDetails','userDetails.department')->paginate(4));        
+        return view('userdetails.index',['users' => $users]);
     }
 
     public function getUserList(){

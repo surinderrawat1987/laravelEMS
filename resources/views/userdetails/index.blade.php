@@ -2,15 +2,18 @@
 
 @section('script')
 <script type="text/javascript">
-$(document).ready( function () {
-    $('#table').DataTable();
-});
-
-// $(document).ready(function() {
-//     $('#table').DataTable( {
-//         "ajax": '../ajax/data/arrays.txt'
-//     });
+// $(document).ready( function () {
+//     $('#table').DataTable();
 // });
+
+$(document).ready(function() {
+    $('#table').DataTable( {
+        // "processing": true,
+        "serverSide": true,
+        "ajax": 'http://localhost/laravelEMS/public/userlist',
+        "lengthMenu": [[1, 2, 5, -1], [1, 2, 5, "All"]]
+    });
+});
 </script>
 @endsection
 
@@ -35,7 +38,7 @@ $(document).ready( function () {
         <table class="table table-bordered" id="table" width="100%" cellspacing="0">
             <thead>
                 <tr>
-                    <th>Sr No</th>
+                    
                     <th>Name</th>
                     <th>Staff ID</th>
                     <th>Gender</th>
@@ -44,38 +47,10 @@ $(document).ready( function () {
                     <th>First Designation</th>
                     <th>First Appoinment Category</th>
                     <th>Date Created</th>
-                    <th>Action</th>
+                    
                 </tr>
             </thead>
-            @php
-            $i = 1;
-            @endphp
-            @foreach($users as $user)
-                
-                <tr>
-                    <td>{{$i}}</td>
-                    <td>{{$user['name']}}</td>
-                    <td>{{$user['user_details']['staffid']}}</td>
-                    <td>{{$user['user_details']['gender']}}</td>
-                    <td>{{$user['user_details']['dob']}}</td>
-                    <td>{{$user['user_details']['department']['value']}}</td>
-                    <td>{{$user['user_details']['designation']['value']}}</td>
-                    <td>{{$user['user_details']['appointment']['value']}}</td>
-
-                    <td>{{date('d-M-Y H:i:a',strtotime($user['created_at']))}}</td>
-                    <td>
-                        <a href="{{url('/userdetails/')}}/{$userDetail['id']}}/edit">edit</a>/
-                        <form method="POST" action="{{ url('/userdetails/')}}/{$userDetail['id']}}">
-                            @csrf
-                            <input  type="hidden" name="_method" value="DELETE">
-                            <input class='delete' type="submit" value="delete">
-                        </form>
-                    </td>
-                </tr>
-                @php
-                $i++;
-                @endphp
-            @endforeach
+           
         </table>
             
         </div>

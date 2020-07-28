@@ -22,19 +22,40 @@ class UserDetailController extends Controller
         // $userDetails = UserDetail::with('user','department','designation','appointment')->get();
         
         //dd($users[0]->appointmentcategory->value);
-        $users = new UserCollection(User::with('userDetails','userDetails.department','userDetails.designation','userDetails.appointment')->paginate(4));
+        $users = new UserCollection(User::with('userDetails','userDetails.department','userDetails.designation','userDetails.appointment')->paginate(1));
         $usersdata = $users->toArray('');
         //dd($users);
         return view('userdetails.index',['users' => $usersdata]);
         
     }
 
-    public function getUserList(){
+    public function getUserList(Request $request){
+        $noOfRecordsPerPage = $request->length;
+        $offset = $request->start;
+        if($noOfRecordsPerPage>0){
+            $userReacords = new UserCollection(User::with('userDetails','userDetails.department','userDetails.designation','userDetails.appointment')->skip($offset)->take($noOfRecordsPerPage)->get());
+        } else {
+            $userReacords = new UserCollection(User::with('userDetails','userDetails.department','userDetails.designation','userDetails.appointment')->get());
+        }
         
-        $users = new UserCollection(User::with('userDetails')->paginate(4));
-        // $users = new UserCollection(User::paginate());
-        dd($users->toArray(''));
-        // $users = UserDetail::with('username','department','designation','appointment')->get();
+        $usersdata = $userReacords->toArray('');
+        
+        foreach ($usersdata as $key => $value) {
+            $users['data'][$key][] = $value['name'];
+            $users['data'][$key][] = $value['user_details']['staffid'];
+            $users['data'][$key][] = $value['user_details']['gender'];
+            $users['data'][$key][] = $value['user_details']['dob'];
+            $users['data'][$key][] = $value['user_details']['department']['value'];
+            $users['data'][$key][] = $value['user_details']['designation']['value'];
+            $users['data'][$key][] = $value['user_details']['appointment']['value'];
+            $users['data'][$key][] = $value['created_at'];
+        }
+        $users['draw'] = $request->draw;
+        $users['recordsTotal'] = 5;
+        $users['recordsFiltered'] = 5;
+
+        return json_encode($users);
+        
     }
 
     /**
